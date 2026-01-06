@@ -1,0 +1,63 @@
+.video-grid {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.video-grid.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  align-content: start;
+}
+
+.video-grid.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.video-grid-loading,
+.video-grid-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  padding: 60px 20px;
+}
+
+.video-grid-loading .spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text-muted);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-bottom: 14px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.video-grid-empty .empty-icon {
+  font-size: 40px;
+  margin-bottom: 14px;
+  opacity: 0.3;
+}
+
+.video-grid-empty h3 {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 6px;
+  font-weight: 500;
+}
+
+.video-grid-empty p {
+  font-size: 13px;
+  margin: 0;
+}

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm init)",
+      "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm tsc --project tsconfig.app.json --noEmit)",
+      "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm tsc --noEmit)",
+      "Bash(\"C:/Users/nattuhan/Git/movie-reference-viewer/bin/ffprobe.exe\" -v error -show_format -show_streams \"C:/Users/nattuhan/AppData/Roaming/movie-reference-viewer/videos/v_1767715627267_iupqiw6.webm\")",
+      "Bash(dir \"C:\\\\Users\\\\nattuhan\\\\Git\\\\movie-reference-viewer\\\\bin\")",
+      "Bash(\"C:/Users/nattuhan/Git/movie-reference-viewer/bin/ffmpeg/win32/ffprobe.exe\" -v error -show_format -show_streams \"C:/Users/nattuhan/AppData/Roaming/movie-reference-viewer/videos/v_1767715627267_iupqiw6.webm\")",
+      "Bash(sqlite3:*)",
+      "Bash(taskkill:*)",
+      "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm build:electron)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)"
+    ]
+  }
+}

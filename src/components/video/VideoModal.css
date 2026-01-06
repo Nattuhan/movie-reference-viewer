@@ -1,0 +1,349 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px;
+}
+
+.video-modal {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 100%;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.15s;
+}
+
+.modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.video-player-container {
+  position: relative;
+  width: 100%;
+  background-color: black;
+}
+
+.video-player {
+  width: 100%;
+  max-height: 60vh;
+  display: block;
+  object-fit: contain;
+  background-color: black;
+}
+
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--bg-tertiary);
+  border-top: 1px solid var(--border);
+}
+
+.control-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s;
+}
+
+.control-btn:hover {
+  background-color: var(--bg-secondary);
+}
+
+.control-btn.active {
+  background-color: var(--accent);
+  color: white;
+}
+
+.progress-container {
+  flex: 1;
+  height: 24px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.progress-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-color: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: 3px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.time-display {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 140px;
+  text-align: center;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.volume-slider {
+  width: 60px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background-color: var(--text-primary);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.speed-select {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.speed-indicator {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.shortcut-hint {
+  padding: 8px 12px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  font-size: 11px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.video-details {
+  padding: 20px;
+}
+
+.video-modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.video-modal-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.video-modal-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.meta-value {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.meta-value.link {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.meta-value.link:hover {
+  text-decoration: underline;
+}
+
+.video-modal-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tags-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag-badge {
+  padding: 3px 8px;
+  font-size: 11px;
+  color: white;
+  border-radius: 10px;
+  background-color: #6b7280;
+}
+
+.video-modal-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.action-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.action-btn.danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.action-btn.danger:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* Memo Section */
+.video-memo {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: var(--bg-tertiary);
+  border-radius: 6px;
+}
+
+.memo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.memo-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.memo-edit-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.memo-edit-btn:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.memo-content {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.memo-empty {
+  color: var(--text-muted);
+  font-style: italic;
+}

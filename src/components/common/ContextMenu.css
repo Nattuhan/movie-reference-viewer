@@ -1,0 +1,89 @@
+.context-menu {
+  position: fixed;
+  min-width: 160px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 4px;
+  z-index: 2000;
+}
+
+.context-menu-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.context-menu-item:hover:not(.disabled) {
+  background-color: var(--bg-hover);
+}
+
+.context-menu-item.disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.context-menu-item.danger {
+  color: var(--danger);
+}
+
+.context-menu-item.danger:hover:not(.disabled) {
+  background-color: var(--danger);
+  color: white;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 4px 0;
+}
+
+/* Submenu */
+.context-menu-item.has-submenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.submenu-arrow {
+  font-size: 8px;
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+
+.context-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 140px;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.context-menu-item.checked {
+  position: relative;
+  padding-left: 24px;
+}
+
+.check-mark {
+  position: absolute;
+  left: 8px;
+  color: var(--accent);
+  font-size: 12px;
+}
