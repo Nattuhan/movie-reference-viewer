@@ -67,13 +67,18 @@ async function downloadFile(url: string, destPath: string): Promise<void> {
   return new Promise((resolve, reject) => {
     const file = createWriteStream(destPath);
 
-    const request = (url: string) => {
-      https.get(url, { headers: { 'User-Agent': 'Reference-Viewer' } }, (response) => {
+    const request = (currentUrl: string) => {
+      const parsedUrl = new URL(currentUrl);
+      https.get(currentUrl, { headers: { 'User-Agent': 'Reference-Viewer' } }, (response) => {
         // Handle redirects
         if (response.statusCode === 301 || response.statusCode === 302) {
           const redirectUrl = response.headers.location;
           if (redirectUrl) {
-            request(redirectUrl);
+            // Handle relative redirects
+            const fullRedirectUrl = redirectUrl.startsWith('/')
+              ? `${parsedUrl.protocol}//${parsedUrl.host}${redirectUrl}`
+              : redirectUrl;
+            request(fullRedirectUrl);
             return;
           }
         }
