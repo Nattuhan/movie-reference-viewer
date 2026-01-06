@@ -17,6 +17,8 @@ extraResources:
     filter:
       - "**/*"
 
+icon: assets/icons/icon.png
+
 mac:
   category: public.app-category.video
   target:
@@ -24,7 +26,6 @@ mac:
       arch:
         - x64
         - arm64
-  icon: assets/icons/icon.icns
   hardenedRuntime: true
   gatekeeperAssess: false
 
@@ -33,7 +34,7 @@ win:
     - target: nsis
       arch:
         - x64
-  icon: assets/icons/icon.ico
+  signAndEditExecutable: false
 
 nsis:
   oneClick: false
