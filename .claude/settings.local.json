@@ -23,7 +23,9 @@
       "Bash(git push)",
       "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm dev)",
       "Bash(git tag:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
     ]
   }
 }
