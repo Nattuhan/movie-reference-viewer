@@ -23,6 +23,9 @@ const api = {
 
     showInFolder: (filePath: string): Promise<void> =>
       ipcRenderer.invoke('app:showInFolder', filePath),
+
+    getPlatform: (): 'darwin' | 'win32' | 'linux' =>
+      process.platform as 'darwin' | 'win32' | 'linux',
   },
 
   // ===== Video Operations =====

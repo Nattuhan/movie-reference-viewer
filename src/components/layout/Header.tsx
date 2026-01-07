@@ -2,12 +2,15 @@ import { useVideoStore } from '../../stores/videoStore';
 import { useUIStore } from '../../stores/uiStore';
 import './Header.css';
 
+const platform = window.electronAPI?.app.getPlatform() ?? 'win32';
+const isMac = platform === 'darwin';
+
 export function Header() {
   const { searchText, setSearchText } = useVideoStore();
   const { openImportDialog, viewMode, setViewMode } = useUIStore();
 
   return (
-    <header className="header">
+    <header className={`header ${isMac ? 'platform-mac' : ''}`}>
       <div className="header-left">
         <h1 className="app-title">Reference Viewer</h1>
       </div>

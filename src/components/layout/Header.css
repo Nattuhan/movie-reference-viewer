@@ -9,6 +9,11 @@
   -webkit-app-region: drag;
 }
 
+/* macOS traffic light buttons spacing */
+.header.platform-mac {
+  padding-left: 80px;
+}
+
 .header-left {
   display: flex;
   align-items: center;

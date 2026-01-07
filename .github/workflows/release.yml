@@ -44,8 +44,8 @@ jobs:
       - name: Ad-hoc sign and repackage macOS apps
         if: matrix.platform == 'mac'
         run: |
-          # Remove old DMGs
-          rm -f release/*.dmg
+          # Remove old DMGs and blockmaps
+          rm -f release/*.dmg release/*.blockmap
 
           # Sign all .app bundles with ad-hoc signature
           for dir in release/mac release/mac-arm64; do
@@ -60,20 +60,26 @@ jobs:
             fi
           done
 
-          # Recreate DMGs using hdiutil
+          # Install create-dmg for proper DMG creation with Applications shortcut
+          npm install -g create-dmg
+
           VERSION=$(node -p "require('./package.json').version")
           APPNAME="Reference Viewer"
 
-          # x64 DMG
+          # Create x64 DMG with Applications shortcut
           if [ -d "release/mac/$APPNAME.app" ]; then
             echo "Creating x64 DMG..."
-            hdiutil create -volname "$APPNAME" -srcfolder "release/mac/$APPNAME.app" -ov -format UDZO "release/$APPNAME-$VERSION.dmg"
+            create-dmg "release/mac/$APPNAME.app" release/ --overwrite || true
+            # Rename to our naming convention
+            mv "release/$APPNAME $VERSION.dmg" "release/$APPNAME-$VERSION.dmg" 2>/dev/null || true
           fi
 
-          # arm64 DMG
+          # Create arm64 DMG with Applications shortcut
           if [ -d "release/mac-arm64/$APPNAME.app" ]; then
             echo "Creating arm64 DMG..."
-            hdiutil create -volname "$APPNAME" -srcfolder "release/mac-arm64/$APPNAME.app" -ov -format UDZO "release/$APPNAME-$VERSION-arm64.dmg"
+            create-dmg "release/mac-arm64/$APPNAME.app" release/ --overwrite || true
+            # Rename to our naming convention
+            mv "release/$APPNAME $VERSION.dmg" "release/$APPNAME-$VERSION-arm64.dmg" 2>/dev/null || true
           fi
 
           ls -la release/
