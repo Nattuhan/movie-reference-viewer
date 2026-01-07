@@ -27,7 +27,8 @@ mac:
       arch:
         - x64
         - arm64
-  hardenedRuntime: true
+  identity: "-"
+  hardenedRuntime: false
   gatekeeperAssess: false
 
 win:
