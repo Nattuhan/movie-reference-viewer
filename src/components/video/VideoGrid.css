@@ -61,3 +61,99 @@
   font-size: 13px;
   margin: 0;
 }
+
+/* Bulk action bar */
+.bulk-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--accent);
+  color: white;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.selection-count {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.bulk-action-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.bulk-action-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bulk-action-btn.danger {
+  background-color: rgba(239, 68, 68, 0.8);
+}
+
+.bulk-action-btn.danger:hover {
+  background-color: rgba(239, 68, 68, 1);
+}
+
+.bulk-action-btn.secondary {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.bulk-action-btn.secondary:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Folder dropdown */
+.folder-dropdown {
+  position: relative;
+}
+
+.folder-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  min-width: 180px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 200;
+}
+
+.folder-menu-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.folder-menu-item:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.folder-menu-item:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.folder-menu-item:last-child {
+  border-radius: 0 0 6px 6px;
+}

@@ -41,6 +41,7 @@ interface VideoState {
   selectedTagIds: number[];
   searchText: string;
   sourceTypeFilter: 'all' | 'local' | 'youtube';
+  selectedVideoIds: number[];
 
   fetchVideos: () => Promise<void>;
   setCurrentFolder: (folderId: number | null) => void;
@@ -50,7 +51,12 @@ interface VideoState {
   addVideo: (video: Video) => void;
   updateVideo: (id: number, updates: Partial<Video>) => void;
   removeVideo: (id: number) => void;
+  removeVideos: (ids: number[]) => void;
   getFilteredVideos: () => Video[];
+  setSelectedVideoIds: (ids: number[]) => void;
+  toggleVideoSelection: (id: number) => void;
+  selectAllVideos: () => void;
+  clearSelection: () => void;
 }
 
 export const useVideoStore = create<VideoState>((set, get) => ({
@@ -61,6 +67,7 @@ export const useVideoStore = create<VideoState>((set, get) => ({
   selectedTagIds: [],
   searchText: '',
   sourceTypeFilter: 'all',
+  selectedVideoIds: [],
 
   fetchVideos: async () => {
     set({ isLoading: true, error: null });
@@ -87,6 +94,13 @@ export const useVideoStore = create<VideoState>((set, get) => ({
   removeVideo: (id) =>
     set((state) => ({
       videos: state.videos.filter((v) => v.id !== id),
+      selectedVideoIds: state.selectedVideoIds.filter((vid) => vid !== id),
+    })),
+
+  removeVideos: (ids) =>
+    set((state) => ({
+      videos: state.videos.filter((v) => !ids.includes(v.id)),
+      selectedVideoIds: state.selectedVideoIds.filter((vid) => !ids.includes(vid)),
     })),
 
   getFilteredVideos: () => {
@@ -124,4 +138,20 @@ export const useVideoStore = create<VideoState>((set, get) => ({
       return true;
     });
   },
+
+  setSelectedVideoIds: (ids) => set({ selectedVideoIds: ids }),
+
+  toggleVideoSelection: (id) =>
+    set((state) => ({
+      selectedVideoIds: state.selectedVideoIds.includes(id)
+        ? state.selectedVideoIds.filter((vid) => vid !== id)
+        : [...state.selectedVideoIds, id],
+    })),
+
+  selectAllVideos: () => {
+    const filtered = get().getFilteredVideos();
+    set({ selectedVideoIds: filtered.map((v) => v.id) });
+  },
+
+  clearSelection: () => set({ selectedVideoIds: [] }),
 }));

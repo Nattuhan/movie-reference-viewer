@@ -17,8 +17,10 @@ export function VideoCard({ video }: VideoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { openVideoModal, viewMode } = useUIStore();
-  const { updateVideo, removeVideo, fetchVideos } = useVideoStore();
+  const { updateVideo, removeVideo, fetchVideos, selectedVideoIds, toggleVideoSelection } = useVideoStore();
   const { folders } = useFolderStore();
+
+  const isSelected = selectedVideoIds.includes(video.id);
 
   // Context menu state
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
@@ -29,8 +31,18 @@ export function VideoCard({ video }: VideoCardProps) {
   const [isMemoEditOpen, setIsMemoEditOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
 
-  const handleClick = () => {
-    openVideoModal(video);
+  const handleClick = (e: React.MouseEvent) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      toggleVideoSelection(video.id);
+    } else {
+      openVideoModal(video);
+    }
+  };
+
+  const handleCheckboxClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleVideoSelection(video.id);
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -199,12 +211,21 @@ export function VideoCard({ video }: VideoCardProps) {
     return (
       <>
         <div
-          className="video-card list"
+          className={`video-card list ${isSelected ? 'selected' : ''}`}
           onClick={handleClick}
           onContextMenu={handleContextMenu}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           draggable
           onDragStart={handleDragStart}
         >
+          {(isHovered || isSelected) && (
+            <div className="selection-checkbox" onClick={handleCheckboxClick}>
+              <div className={`checkbox ${isSelected ? 'checked' : ''}`}>
+                {isSelected && <span>✓</span>}
+              </div>
+            </div>
+          )}
           <div className="thumbnail-container">
             {thumbnailUrl && !imageError ? (
               <img
@@ -243,7 +264,7 @@ export function VideoCard({ video }: VideoCardProps) {
   return (
     <>
       <div
-        className="video-card grid"
+        className={`video-card grid ${isSelected ? 'selected' : ''}`}
         onClick={handleClick}
         onContextMenu={handleContextMenu}
         onMouseEnter={() => setIsHovered(true)}
@@ -251,6 +272,13 @@ export function VideoCard({ video }: VideoCardProps) {
         draggable
         onDragStart={handleDragStart}
       >
+        {(isHovered || isSelected) && (
+          <div className="selection-checkbox" onClick={handleCheckboxClick}>
+            <div className={`checkbox ${isSelected ? 'checked' : ''}`}>
+              {isSelected && <span>✓</span>}
+            </div>
+          </div>
+        )}
         <div className="thumbnail-container">
           {thumbnailUrl && !imageError ? (
             <img

@@ -1,71 +1,71 @@
 # Reference Viewer
 
-A desktop application for organizing and viewing video references. Import videos from YouTube or local files, organize them with folders and tags, and quickly browse with GIF thumbnail previews.
+動画リファレンスを整理・閲覧するためのデスクトップアプリ。YouTubeやローカルファイルから動画をインポートし、フォルダやタグで整理して、GIFサムネイルでプレビューできます。
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## Features
+## 機能
 
-- **YouTube Import**: Download clips from YouTube with custom start/end times
-- **Local Import**: Import video files from your computer
-- **GIF Thumbnails**: Hover to preview videos as animated GIFs
-- **Folder Organization**: Organize videos into folders with drag-and-drop
-- **Tag System**: Add colored tags to categorize videos
-- **Video Player**: Built-in player with speed control, loop, and volume settings
-- **Memo/Notes**: Add notes to each video
-- **Open Original**: Jump to the original YouTube video at the clip's start time
+- **YouTubeインポート**: 開始・終了時間を指定してクリップをダウンロード
+- **ローカルインポート**: PCから動画ファイルをインポート
+- **GIFサムネイル**: ホバーでGIFアニメーションプレビュー
+- **フォルダ整理**: ドラッグ＆ドロップでフォルダに整理
+- **タグシステム**: カラータグで動画を分類
+- **動画プレイヤー**: 速度調整、ループ、音量設定付き
+- **メモ機能**: 各動画にメモを追加
+- **元動画を開く**: YouTubeの元動画をクリップの開始位置で開く
 
-## Download
+## ダウンロード
 
-Download the latest version from [Releases](https://github.com/Nattuhan/movie-reference-viewer/releases):
+[Releases](https://github.com/Nattuhan/movie-reference-viewer/releases) から最新版をダウンロード:
 
 - **Windows**: `Reference-Viewer-Setup-x.x.x.exe`
 - **Mac (Intel)**: `Reference-Viewer-x.x.x.dmg`
 - **Mac (Apple Silicon)**: `Reference-Viewer-x.x.x-arm64.dmg`
 
-## Development
+## 開発
 
-### Prerequisites
+### 必要なもの
 
 - Node.js 20+
 - pnpm
 
-### Setup
+### セットアップ
 
 ```bash
-# Install dependencies
+# 依存関係をインストール
 pnpm install
 
-# Download ffmpeg and yt-dlp binaries
+# ffmpegとyt-dlpバイナリをダウンロード
 pnpm download-binaries
 
-# Start development server
+# 開発サーバーを起動
 pnpm dev
 ```
 
-### Build
+### ビルド
 
 ```bash
-# Build for current platform
+# 現在のプラットフォーム向けにビルド
 pnpm dist
 
-# Build for specific platform
+# 特定のプラットフォーム向けにビルド
 pnpm dist:win
 pnpm dist:mac
 ```
 
-## Tech Stack
+## 技術スタック
 
-- **Frontend**: React, TypeScript, Zustand
-- **Backend**: Electron, better-sqlite3
-- **Video Processing**: ffmpeg (LGPL), yt-dlp
-- **Build**: Vite, electron-builder
+- **フロントエンド**: React, TypeScript, Zustand
+- **バックエンド**: Electron, better-sqlite3
+- **動画処理**: ffmpeg (LGPL), yt-dlp
+- **ビルド**: Vite, electron-builder
 
-## License
+## ライセンス
 
 MIT
 
-### Third-party Licenses
+### サードパーティライセンス
 
 - [ffmpeg](https://ffmpeg.org/) - LGPL v2.1+
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - Unlicense

@@ -1,6 +1,6 @@
 {
   "name": "movie-reference-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Video reference viewer for creative professionals",
   "main": "electron-dist/main.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "build:electron": "tsc -p tsconfig.electron.json",
     "pack": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "dist:mac": "npm run build && electron-builder --mac",
-    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac --publish never",
+    "dist:win": "npm run build && electron-builder --win --publish never",
     "postinstall": "electron-builder install-app-deps",
     "download-binaries": "tsx scripts/download-binaries.ts",
     "lint": "eslint . --ext .ts,.tsx",

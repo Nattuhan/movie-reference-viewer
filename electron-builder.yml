@@ -20,6 +20,7 @@ extraResources:
 icon: assets/icons/icon.png
 
 mac:
+  icon: assets/icons/icon.png
   category: public.app-category.video
   target:
     - target: dmg
@@ -30,6 +31,7 @@ mac:
   gatekeeperAssess: false
 
 win:
+  icon: assets/icons/icon.png
   target:
     - target: nsis
       arch:

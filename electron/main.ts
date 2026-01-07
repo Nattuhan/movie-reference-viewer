@@ -15,6 +15,7 @@ async function createWindow() {
     height: 900,
     minWidth: 900,
     minHeight: 600,
+    icon: path.join(__dirname, '../assets/icons/icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,

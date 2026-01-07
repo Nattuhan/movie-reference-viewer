@@ -11,7 +11,19 @@
       "Bash(taskkill:*)",
       "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm build:electron)",
       "Bash(netstat:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(dir:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo edit:*)",
+      "Bash(gh run watch:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh release:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(C:/Users/nattuhan/AppData/Roaming/npm/pnpm dev)",
+      "Bash(git tag:*)",
+      "Bash(git push:*)"
     ]
   }
 }
