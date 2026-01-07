@@ -41,6 +41,43 @@ jobs:
       - name: Build and Package
         run: pnpm dist:${{ matrix.platform }}
 
+      - name: Ad-hoc sign and repackage macOS apps
+        if: matrix.platform == 'mac'
+        run: |
+          # Remove old DMGs
+          rm -f release/*.dmg
+
+          # Sign all .app bundles with ad-hoc signature
+          for dir in release/mac release/mac-arm64; do
+            if [ -d "$dir" ]; then
+              for app in "$dir"/*.app; do
+                if [ -d "$app" ]; then
+                  echo "Signing: $app"
+                  codesign --force --deep --sign - "$app"
+                  codesign --verify --verbose "$app" || true
+                fi
+              done
+            fi
+          done
+
+          # Recreate DMGs using hdiutil
+          VERSION=$(node -p "require('./package.json').version")
+          APPNAME="Reference Viewer"
+
+          # x64 DMG
+          if [ -d "release/mac/$APPNAME.app" ]; then
+            echo "Creating x64 DMG..."
+            hdiutil create -volname "$APPNAME" -srcfolder "release/mac/$APPNAME.app" -ov -format UDZO "release/$APPNAME-$VERSION.dmg"
+          fi
+
+          # arm64 DMG
+          if [ -d "release/mac-arm64/$APPNAME.app" ]; then
+            echo "Creating arm64 DMG..."
+            hdiutil create -volname "$APPNAME" -srcfolder "release/mac-arm64/$APPNAME.app" -ov -format UDZO "release/$APPNAME-$VERSION-arm64.dmg"
+          fi
+
+          ls -la release/
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
